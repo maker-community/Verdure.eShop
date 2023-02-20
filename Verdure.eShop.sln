@@ -1,0 +1,93 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{21A15D33-0BA3-4A27-8143-EBAEA5D58A93}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{86EC1A24-3709-4AF2-97DD-38C23FC907F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A908FD34-B9E7-4331-9D29-6B931E06DE65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{5BDB867C-2166-4C18-AEA3-D6323ABD51BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{E1470EE4-1C46-4B0F-B7C3-B8A11248EDAC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventBus", "EventBus", "{E48FB023-9E97-4102-9C3B-1A5461E9E00C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Healthchecks", "Healthchecks", "{10CD178B-1A74-4F08-83BF-7D248B1A08DA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "src\BuildingBlocks\EventBus\EventBus.csproj", "{EE10EA30-11AE-4416-8F9E-CA2C50DA5CDC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healthchecks", "src\BuildingBlocks\Healthchecks\Healthchecks.csproj", "{2CD600FB-2576-48FE-9D4B-97DA71E2058D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Verdure.eShop.Catalog.API", "src\Services\Catalog\Verdure.eShop.Catalog.API\Verdure.eShop.Catalog.API.csproj", "{0202D22D-DBC3-4CAB-BCCE-9B4B2CAEF785}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configuration", "configuration", "{F6DC84D7-176C-4210-80FB-A04ECA0A81AF}"
+	ProjectSection(SolutionItems) = preProject
+		dapr\configuration\eshop-config.yaml = dapr\configuration\eshop-config.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{45D505FB-1399-44BE-BD83-91EBD24384AD}"
+	ProjectSection(SolutionItems) = preProject
+		dapr\components\eshop-email.yaml = dapr\components\eshop-email.yaml
+		dapr\components\eshop-pubsub.yaml = dapr\components\eshop-pubsub.yaml
+		dapr\components\eshop-secrets.json = dapr\components\eshop-secrets.json
+		dapr\components\eshop-secretstore.yaml = dapr\components\eshop-secretstore.yaml
+		dapr\components\eshop-statestore.yaml = dapr\components\eshop-statestore.yaml
+	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{183DDBDC-70F9-46EA-A3DB-9804AFA6DF9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{1A154681-EF25-480D-9A02-9C29D9662761}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStatus", "src\Web\WebStatus\WebStatus.csproj", "{9C358436-B5B5-4456-82EF-90BBC1FC6ECE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE10EA30-11AE-4416-8F9E-CA2C50DA5CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE10EA30-11AE-4416-8F9E-CA2C50DA5CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE10EA30-11AE-4416-8F9E-CA2C50DA5CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE10EA30-11AE-4416-8F9E-CA2C50DA5CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CD600FB-2576-48FE-9D4B-97DA71E2058D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CD600FB-2576-48FE-9D4B-97DA71E2058D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CD600FB-2576-48FE-9D4B-97DA71E2058D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CD600FB-2576-48FE-9D4B-97DA71E2058D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0202D22D-DBC3-4CAB-BCCE-9B4B2CAEF785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0202D22D-DBC3-4CAB-BCCE-9B4B2CAEF785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0202D22D-DBC3-4CAB-BCCE-9B4B2CAEF785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0202D22D-DBC3-4CAB-BCCE-9B4B2CAEF785}.Release|Any CPU.Build.0 = Release|Any CPU
+		{183DDBDC-70F9-46EA-A3DB-9804AFA6DF9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{183DDBDC-70F9-46EA-A3DB-9804AFA6DF9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{183DDBDC-70F9-46EA-A3DB-9804AFA6DF9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{183DDBDC-70F9-46EA-A3DB-9804AFA6DF9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C358436-B5B5-4456-82EF-90BBC1FC6ECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C358436-B5B5-4456-82EF-90BBC1FC6ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C358436-B5B5-4456-82EF-90BBC1FC6ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C358436-B5B5-4456-82EF-90BBC1FC6ECE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{21A15D33-0BA3-4A27-8143-EBAEA5D58A93} = {A908FD34-B9E7-4331-9D29-6B931E06DE65}
+		{86EC1A24-3709-4AF2-97DD-38C23FC907F8} = {21A15D33-0BA3-4A27-8143-EBAEA5D58A93}
+		{E1470EE4-1C46-4B0F-B7C3-B8A11248EDAC} = {A908FD34-B9E7-4331-9D29-6B931E06DE65}
+		{E48FB023-9E97-4102-9C3B-1A5461E9E00C} = {E1470EE4-1C46-4B0F-B7C3-B8A11248EDAC}
+		{10CD178B-1A74-4F08-83BF-7D248B1A08DA} = {E1470EE4-1C46-4B0F-B7C3-B8A11248EDAC}
+		{EE10EA30-11AE-4416-8F9E-CA2C50DA5CDC} = {E48FB023-9E97-4102-9C3B-1A5461E9E00C}
+		{2CD600FB-2576-48FE-9D4B-97DA71E2058D} = {10CD178B-1A74-4F08-83BF-7D248B1A08DA}
+		{0202D22D-DBC3-4CAB-BCCE-9B4B2CAEF785} = {86EC1A24-3709-4AF2-97DD-38C23FC907F8}
+		{F6DC84D7-176C-4210-80FB-A04ECA0A81AF} = {5BDB867C-2166-4C18-AEA3-D6323ABD51BF}
+		{45D505FB-1399-44BE-BD83-91EBD24384AD} = {5BDB867C-2166-4C18-AEA3-D6323ABD51BF}
+		{1A154681-EF25-480D-9A02-9C29D9662761} = {A908FD34-B9E7-4331-9D29-6B931E06DE65}
+		{9C358436-B5B5-4456-82EF-90BBC1FC6ECE} = {1A154681-EF25-480D-9A02-9C29D9662761}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED68E700-75AD-461B-8521-C1B8F3B21C15}
+	EndGlobalSection
+EndGlobal

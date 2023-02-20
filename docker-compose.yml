@@ -1,0 +1,136 @@
+version: '3.4'
+
+services:
+
+  maildev:
+    image: maildev/maildev:latest
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
+  redis:
+    image: redis:alpine
+
+  seq:
+    image: datalust/seq:latest
+
+  # Use the Azure SQL Edge version so we can also run on Apple Sillicon (thanks @ChristianWeyer)
+  sqldata:
+    image: mcr.microsoft.com/azure-sql-edge
+
+  zipkin:
+    image: openzipkin/zipkin-slim:latest
+
+  #basket-api:
+  #  image: ${REGISTRY:-gilzhang}/basket.api:${TAG:-latest}
+  #  build:
+  #    context: .
+  #    dockerfile: src/Services/Basket/Basket.API/Dockerfile
+  #  depends_on:
+  #    - identity-api
+  #    - redis
+
+  #basket-api-dapr:
+  #  image: "daprio/daprd:1.9.4"
+  #  network_mode: "service:basket-api"
+  #  depends_on:
+  #    - basket-api
+
+  #blazor-client:
+  #  image: ${REGISTRY:-gilzhang}/blazor.client:${TAG:-latest}
+  #  build:
+  #    context: .
+  #    dockerfile: src/Web/BlazorClient.Host/Dockerfile
+
+  verdure-eshop-catalog-api:
+    image: ${REGISTRY:-gilzhang}/verdure.eshop.catalog.api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/Catalog/Verdure.eShop.Catalog.API/Dockerfile
+    depends_on:
+      - sqldata
+
+  verdure-eshop-catalog-api-dapr:
+    image: "daprio/daprd:1.9.4"
+    network_mode: "service:verdure-eshop-catalog-api"
+    depends_on:
+      - verdure-eshop-catalog-api
+
+  #identity-api:
+  #  image: ${REGISTRY:-gilzhang}/identity.api:${TAG:-latest}
+  #  build:
+  #    context: .
+  #    dockerfile: src/Services/Identity/Identity.API/Dockerfile
+  #  depends_on:
+  #    - sqldata
+
+  #identity-api-dapr:
+  #  image: "daprio/daprd:1.9.4"
+  #  network_mode: "service:identity-api"
+  #  depends_on:
+  #    - identity-api
+
+  #ordering-api:
+  #  image: ${REGISTRY:-gilzhang}/ordering.api:${TAG:-latest}
+  #  build:
+  #    context: .
+  #    dockerfile: src/Services/Ordering/Ordering.API/Dockerfile
+  #  depends_on:
+  #    - sqldata
+
+  #ordering-api-dapr:
+  #  image: "daprio/daprd:1.9.4"
+  #  network_mode: "service:ordering-api"
+  #  depends_on:
+  #    - ordering-api
+
+  #payment-api:
+  #  image: ${REGISTRY:-gilzhang}/payment.api:${TAG:-latest}
+  #  build:
+  #    context: .
+  #    dockerfile: src/Services/Payment/Payment.API/Dockerfile
+
+  #payment-api-dapr:
+  #  image: "daprio/daprd:1.9.4"
+  #  network_mode: "service:payment-api"
+  #  depends_on:
+  #    - payment-api
+
+  #webshoppingagg:
+  #  image: ${REGISTRY:-gilzhang}/webshoppingagg:${TAG:-latest}
+  #  build:
+  #    context: .
+  #    dockerfile: src/ApiGateways/Aggregators/Web.Shopping.HttpAggregator/Dockerfile
+  #  depends_on:
+  #    - basket-api
+  #    - catalog-api
+  #    - identity-api
+  #    - ordering-api
+  #    - sqldata
+
+  #webshoppingagg-dapr:
+  #  image: "daprio/daprd:1.9.4"
+  #  network_mode: "service:webshoppingagg"
+  #  depends_on:
+  #    - webshoppingagg
+
+  #webshoppingapigw:
+  #  image: ${REGISTRY:-gilzhang}/webshoppingapigw:${TAG:-latest}
+  #  build:
+  #    context: .
+  #    dockerfile: src/ApiGateways/Envoy/Dockerfile
+
+  #webshoppingapigw-dapr:
+  #  image: "daprio/daprd:1.9.4"
+  #  network_mode: "service:webshoppingapigw"
+  #  depends_on:
+  #    - webshoppingapigw
+
+  webstatus:
+    image: ${REGISTRY:-gilzhang}/webstatus:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Web/WebStatus/Dockerfile
+
+  dapr-placement:
+    image: "daprio/dapr:1.9.4"
