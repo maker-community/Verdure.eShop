@@ -16,6 +16,10 @@ services:
     ports:
       - "5672:5672"
 
+  mongodb:
+    ports:
+      - "27018:27017"
+
   redis:
     image: redis:alpine
     ports:

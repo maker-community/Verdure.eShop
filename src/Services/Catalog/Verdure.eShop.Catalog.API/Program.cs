@@ -1,4 +1,7 @@
-﻿var appName = "Catalog API";
+﻿using Verdure.eShop.Catalog.API;
+using Verdure.eShop.Mongo.Extensions;
+
+var appName = "Catalog API";
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddCustomConfiguration();
@@ -7,6 +10,7 @@ builder.AddCustomSwagger();
 builder.AddCustomHealthChecks();
 builder.AddCustomApplicationServices();
 builder.AddCustomDatabase();
+
 
 builder.Services.AddDaprClient();
 builder.Services.AddControllers();

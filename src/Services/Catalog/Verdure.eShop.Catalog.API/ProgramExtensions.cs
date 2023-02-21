@@ -1,5 +1,7 @@
 ﻿// Only use in this file to avoid conflicts with Microsoft.Extensions.Logging
 using Serilog;
+using Verdure.eShop.Catalog.API;
+using Verdure.eShop.Mongo.Extensions;
 
 namespace Verdure.eShop.Services.Catalog.API;
 
@@ -62,9 +64,11 @@ public static class ProgramExtensions
     public static void AddCustomDatabase(this WebApplicationBuilder builder)
     {
 
+        var dbStr = builder.Configuration.GetConnectionString("Mongo");
+        builder.Services.AddMongoDbContext<EmojisDbContext>(dbStr!);
 
-        builder.Services.AddDbContext<CatalogDbContext>(
-            options => options.UseSqlServer(builder.Configuration["ConnectionStrings:CatalogDB"]!));
+        //builder.Services.AddDbContext<CatalogDbContext>(
+        //    options => options.UseSqlServer(builder.Configuration["ConnectionStrings:CatalogDB"]!));
     }
 
     public static void ApplyDatabaseMigration(this WebApplication app)
@@ -72,12 +76,12 @@ public static class ProgramExtensions
         // Apply database migration automatically. Note that this approach is not
         // recommended for production scenarios. Consider generating SQL scripts from
         // migrations instead.
-        using var scope = app.Services.CreateScope();
+        //using var scope = app.Services.CreateScope();
 
-        var retryPolicy = CreateRetryPolicy(app.Configuration, Log.Logger);
-        var context = scope.ServiceProvider.GetRequiredService<CatalogDbContext>();
+        //var retryPolicy = CreateRetryPolicy(app.Configuration, Log.Logger);
+        //var context = scope.ServiceProvider.GetRequiredService<CatalogDbContext>();
 
-        retryPolicy.Execute(context.Database.Migrate);
+        //retryPolicy.Execute(context.Database.Migrate);
     }
 
     private static Policy CreateRetryPolicy(IConfiguration configuration, Serilog.ILogger logger)

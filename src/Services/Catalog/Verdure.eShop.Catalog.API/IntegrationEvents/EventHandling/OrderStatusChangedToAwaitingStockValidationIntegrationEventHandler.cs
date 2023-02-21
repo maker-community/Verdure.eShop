@@ -1,13 +1,16 @@
-﻿namespace Verdure.eShop.Services.Catalog.API.IntegrationEvents.EventHandling;
+﻿using MongoDB.Driver;
+using Verdure.eShop.Catalog.API;
 
-public class OrderStatusChangedToAwaitingStockValidationIntegrationEventHandler : 
+namespace Verdure.eShop.Services.Catalog.API.IntegrationEvents.EventHandling;
+
+public class OrderStatusChangedToAwaitingStockValidationIntegrationEventHandler :
     IIntegrationEventHandler<OrderStatusChangedToAwaitingStockValidationIntegrationEvent>
 {
-    private readonly CatalogDbContext _context;
+    private readonly EmojisDbContext _context;
     private readonly IEventBus _eventBus;
 
     public OrderStatusChangedToAwaitingStockValidationIntegrationEventHandler(
-        CatalogDbContext context,
+        EmojisDbContext context,
         IEventBus eventBus)
     {
         _context = context;
@@ -20,7 +23,8 @@ public class OrderStatusChangedToAwaitingStockValidationIntegrationEventHandler 
 
         foreach (var orderStockItem in @event.OrderStockItems)
         {
-            var catalogItem = _context.CatalogItems.Find(orderStockItem.ProductId);
+            var catalogItem = await _context.CatalogItems.Find(c => c.Id == orderStockItem.ProductId).SingleOrDefaultAsync();
+
             if (catalogItem != null)
             {
                 var hasStock = catalogItem.AvailableStock >= orderStockItem.Units;

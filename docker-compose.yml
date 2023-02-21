@@ -8,6 +8,9 @@ services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
 
+  mongodb:
+    image: mongo
+
   redis:
     image: redis:alpine
 

@@ -10,6 +10,8 @@ public class CatalogItem
 
     public string PictureFileName { get; private set; }
 
+    public string VideoFileId { get; private set; }
+
     public int CatalogTypeId { get; private set; }
 
     public CatalogType CatalogType { get; private set; } = null!;
@@ -25,6 +27,7 @@ public class CatalogItem
         string name,
         decimal price,
         string pictureFileName,
+        string videoFileId,
         int catalogTypeId,
         int catalogBrandId,
         int availableStock) 
@@ -33,6 +36,7 @@ public class CatalogItem
         Name = name;
         Price = price;
         PictureFileName = pictureFileName;
+        VideoFileId = videoFileId;
         CatalogTypeId = catalogTypeId;
         CatalogBrandId = catalogBrandId;
         AvailableStock = availableStock;

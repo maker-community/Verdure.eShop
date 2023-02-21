@@ -11,8 +11,6 @@ global using Verdure.eShop.BuildingBlocks.EventBus;
 global using Verdure.eShop.BuildingBlocks.EventBus.Abstractions;
 global using Verdure.eShop.BuildingBlocks.EventBus.Events;
 global using Verdure.eShop.Services.Catalog.API;
-global using Verdure.eShop.Services.Catalog.API.Infrastructure;
-global using Verdure.eShop.Services.Catalog.API.Infrastructure.EntityConfigurations;
 global using Verdure.eShop.Services.Catalog.API.IntegrationEvents.EventHandling;
 global using Verdure.eShop.Services.Catalog.API.IntegrationEvents.Events;
 global using Verdure.eShop.Services.Catalog.API.Model;

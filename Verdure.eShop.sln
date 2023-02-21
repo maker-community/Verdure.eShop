@@ -43,6 +43,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{1A154681-EF2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStatus", "src\Web\WebStatus\WebStatus.csproj", "{9C358436-B5B5-4456-82EF-90BBC1FC6ECE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verdure.eShop.Mongo", "src\Services\Verdure.eShop.Mongo\Verdure.eShop.Mongo.csproj", "{45A5710C-79C6-4B74-9991-27E9B5FBF136}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{9C358436-B5B5-4456-82EF-90BBC1FC6ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C358436-B5B5-4456-82EF-90BBC1FC6ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C358436-B5B5-4456-82EF-90BBC1FC6ECE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45A5710C-79C6-4B74-9991-27E9B5FBF136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45A5710C-79C6-4B74-9991-27E9B5FBF136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45A5710C-79C6-4B74-9991-27E9B5FBF136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45A5710C-79C6-4B74-9991-27E9B5FBF136}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{45D505FB-1399-44BE-BD83-91EBD24384AD} = {5BDB867C-2166-4C18-AEA3-D6323ABD51BF}
 		{1A154681-EF25-480D-9A02-9C29D9662761} = {A908FD34-B9E7-4331-9D29-6B931E06DE65}
 		{9C358436-B5B5-4456-82EF-90BBC1FC6ECE} = {1A154681-EF25-480D-9A02-9C29D9662761}
+		{45A5710C-79C6-4B74-9991-27E9B5FBF136} = {21A15D33-0BA3-4A27-8143-EBAEA5D58A93}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED68E700-75AD-461B-8521-C1B8F3B21C15}

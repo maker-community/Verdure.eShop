@@ -4,4 +4,5 @@ public record ItemViewModel(
     int Id,
     string Name,
     decimal Price,
-    string PictureFileName);
+    string PictureFileName,
+    string VideoFileId);
