@@ -67,8 +67,7 @@ public static class ProgramExtensions
         var dbStr = builder.Configuration.GetConnectionString("Mongo");
         builder.Services.AddMongoDbContext<EmojisDbContext>(dbStr!);
 
-        //builder.Services.AddDbContext<CatalogDbContext>(
-        //    options => options.UseSqlServer(builder.Configuration["ConnectionStrings:CatalogDB"]!));
+        builder.Services.AddHoyoGridFS();
     }
 
     public static void ApplyDatabaseMigration(this WebApplication app)
