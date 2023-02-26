@@ -2,14 +2,14 @@
 
 public class CatalogItem
 {
-    public int Id { get; private set; }
+    public string Id { get; private set; } = string.Empty;
 
     public string Name { get; private set; }
 
     public decimal Price { get; private set; }
 
     public string PictureFileName { get; private set; }
-
+    public string PictureFileId { get; private set; }
     public string VideoFileId { get; private set; }
 
     public int CatalogTypeId { get; private set; }
@@ -23,19 +23,19 @@ public class CatalogItem
     public int AvailableStock { get; private set; }
 
     public CatalogItem(
-        int id,
         string name,
         decimal price,
         string pictureFileName,
+        string pictureFileId,
         string videoFileId,
         int catalogTypeId,
         int catalogBrandId,
-        int availableStock) 
+        int availableStock)
     {
-        Id = id;
         Name = name;
         Price = price;
         PictureFileName = pictureFileName;
+        PictureFileId = pictureFileId;
         VideoFileId = videoFileId;
         CatalogTypeId = catalogTypeId;
         CatalogBrandId = catalogBrandId;

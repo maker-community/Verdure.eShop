@@ -29,23 +29,23 @@ public class CatalogController : ControllerBase
 
         var catalogItems = new List<CatalogItem>()
         {
-            new CatalogItem(1, ".NET Bot Black Hoodie", 19.5M, "1.png", "1.zip", 1, 5, 100),
-            new CatalogItem(2, ".NET Black & White Mug", 8.5M, "2.png", "2.zip", 1, 2, 100),
-            new CatalogItem(3, "Prism White T-Shirt", 12, "3.png", "3.zip", 3, 5, 100),
-            new CatalogItem(4, ".NET Foundation T-shirt", 14.99M, "4.png", "4.zip", 1, 5, 100),
-            new CatalogItem(5, "Roslyn Red Pin", 8.5M, "5.png", "5.zip", 3, 3, 100),
-            new CatalogItem(6, ".NET Blue Hoodie", 12, "6.png", "6.zip", 1, 5, 100),
-            new CatalogItem(7, "Roslyn Red T-Shirt", 12, "7.png", "7.zip", 3, 5, 100),
-            new CatalogItem(8, "Kudu Purple Hoodie", 8.5M, "8.png", "8.zip", 3, 5, 100),
-            new CatalogItem(9, "Cup<T> White Mug", 12, "9.png", "9.zip", 3, 2, 100),
-            new CatalogItem(10, ".NET Foundation Pin", 9, "10.png", "10.zip", 1, 3, 100),
-            new CatalogItem(11, "Cup<T> Pin", 8.5M, "11.png", "11.zip", 1, 3, 100),
-            new CatalogItem(12, "Prism White TShirt", 12, "12.png", "12.zip", 3, 5, 100),
-            new CatalogItem(13, "Modern .NET Black & White Mug", 8.5M, "13.png", "13.zip", 1, 2, 100),
-            new CatalogItem(14, "Modern Cup<T> White Mug", 12, "14.png", "14.zip", 1, 2, 100),
-            new CatalogItem(15, "Dapr Cap", 9.99M, "15.png", "15.zip", 2, 1, 100),
-            new CatalogItem(16, "Dapr Zipper Hoodie", 14.99M, "16.png", "16.zip", 2, 5, 100),
-            new CatalogItem(17, "Dapr Logo Sticker", 1.99M, "17.png", "17.zip", 2, 4, 100)
+            new CatalogItem(".NET Bot Black Hoodie", 19.5M, "1.png", "1.png", "1.zip", 1, 5, 100),
+            new CatalogItem(".NET Black & White Mug", 8.5M, "2.png","2.png", "2.zip", 1, 2, 100),
+            new CatalogItem("Prism White T-Shirt", 12, "3.png","3.png",  "3.zip", 3, 5, 100),
+            new CatalogItem(".NET Foundation T-shirt", 14.99M, "4.png", "4.png","4.zip", 1, 5, 100),
+            new CatalogItem("Roslyn Red Pin", 8.5M, "5.png","5.png", "5.zip", 3, 3, 100),
+            new CatalogItem(".NET Blue Hoodie", 12, "6.png","6.png",  "6.zip", 1, 5, 100),
+            new CatalogItem("Roslyn Red T-Shirt", 12, "7.png","7.png", "7.zip", 3, 5, 100),
+            new CatalogItem("Kudu Purple Hoodie", 8.5M, "8.png", "8.png","8.zip", 3, 5, 100),
+            new CatalogItem("Cup<T> White Mug", 12, "9.png", "9.png","9.zip", 3, 2, 100),
+            new CatalogItem(".NET Foundation Pin", 9, "10.png","10.png", "10.zip", 1, 3, 100),
+            new CatalogItem("Cup<T> Pin", 8.5M, "11.png","11.png",  "11.zip", 1, 3, 100),
+            new CatalogItem("Prism White TShirt", 12, "12.png","12.png", "12.zip", 3, 5, 100),
+            new CatalogItem("Modern .NET Black & White Mug", 8.5M, "13.png","13.png", "13.zip", 1, 2, 100),
+            new CatalogItem("Modern Cup<T> White Mug", 12, "14.png","14.png", "14.zip", 1, 2, 100),
+            new CatalogItem("Dapr Cap", 9.99M, "15.png","15.png",  "15.zip", 2, 1, 100),
+            new CatalogItem("Dapr Zipper Hoodie", 14.99M, "16.png",  "16.png","16.zip", 2, 5, 100),
+            new CatalogItem("Dapr Logo Sticker", 1.99M, "17.png","17.png", "17.zip", 2, 4, 100)
         };
         await _context.CatalogItems.InsertManyAsync(catalogItems);
 
@@ -60,6 +60,15 @@ public class CatalogController : ControllerBase
 
         await _context.CatalogTypes.InsertManyAsync(catalogType);
         return "ok";
+    }
+
+    [HttpPost("CreateCatalogItem")]
+    public async Task<IActionResult> CreateCatalogItem(CatalogItemRequest request)
+    {
+        var catalog = new CatalogItem(request.Name, 0.0M, request.PictureFileName, request.PictureFileId,
+            request.VideoFileId, request.CatalogTypeId, request.CatalogBrandId, 100);
+        await _context.CatalogItems.InsertOneAsync(catalog);
+        return Ok(catalog);
     }
 
     [HttpGet("brands")]
@@ -84,7 +93,7 @@ public class CatalogController : ControllerBase
     {
         if (!string.IsNullOrEmpty(ids))
         {
-            var numIds = ids.Split(',').Select(id => (Ok: int.TryParse(id, out int x), Value: x));
+            var numIds = ids.Split(',').Select(id => (Ok: true, Value: id));
             if (numIds.All(nid => nid.Ok))
             {
                 var idsToSelect = numIds.Select(id => id.Value);
@@ -96,6 +105,7 @@ public class CatalogController : ControllerBase
                         item.Name,
                         item.Price,
                         item.PictureFileName,
+                        item.PictureFileId,
                         item.VideoFileId));
 
                 return Ok(items);
@@ -137,6 +147,7 @@ public class CatalogController : ControllerBase
                 item.Name,
                 item.Price,
                 item.PictureFileName,
+                 item.PictureFileId,
                 item.VideoFileId)).AsEnumerable();
 
         return new PaginatedItemsViewModel(pageIndex, pageSize, totalItems, itemsOnPage);
