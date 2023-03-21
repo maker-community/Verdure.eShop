@@ -1,7 +1,4 @@
-﻿using Verdure.eShop.Catalog.API;
-using Verdure.eShop.Mongo.Extensions;
-
-var appName = "Catalog API";
+﻿var appName = "Catalog API";
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddCustomConfiguration();
@@ -15,8 +12,27 @@ builder.AddCustomDatabase();
 builder.Services.AddDaprClient();
 builder.Services.AddControllers();
 
-var app = builder.Build();
+var config = builder.Configuration;
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder
+            .WithOrigins(
+                config["App:CorsOrigins"]!
+                    .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                    .ToArray()
+            )
+            .SetIsOriginAllowedToAllowWildcardSubdomains()
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
+var app = builder.Build();
+app.UseCors();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -34,7 +50,7 @@ app.UseStaticFiles(new StaticFileOptions
     FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.ContentRootPath, "Pics")),
     RequestPath = "/pics"
 });
-
+app.UseRouting();
 app.UseCloudEvents();
 
 app.MapGet("/", () => Results.LocalRedirect("~/swagger"));

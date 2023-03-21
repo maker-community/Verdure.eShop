@@ -59,6 +59,12 @@ services:
     depends_on:
       - verdure-eshop-catalog-api
 
+  verdure-eShop-httpAggregator:
+    image: ${REGISTRY:-eshopdapr}/http-aggregator:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/ApiGateways/Aggregators/Verdure.eShop.HttpAggregator/Dockerfile
+
   #identity-api:
   #  image: ${REGISTRY:-gilzhang}/identity.api:${TAG:-latest}
   #  build:

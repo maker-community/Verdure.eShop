@@ -1,0 +1,21 @@
+{
+  "ReverseProxy": {
+    "Routes": {
+      "Identity Service": {
+        "ClusterId": "CatalogAPI",
+        "Match": {
+          "Path": "/api/{**everything}"
+        }
+      }
+    },
+    "Clusters": {
+      "CatalogAPI": {
+        "Destinations": {
+          "destination1": {
+            "Address": "http://localhost:5101"
+          }
+        }
+      }
+    }
+  }
+}
