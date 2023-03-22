@@ -83,7 +83,7 @@ services:
       - RetryMigrations=true
       - SeqServerUrl=http://seq
     ports:
-      - "5101:80"
+      - "80:80"
 
   verdure-eShop-httpAggregator:
     environment:
