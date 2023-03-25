@@ -16,6 +16,37 @@ public class GridFSController : ControllerBase
         Bucket = bucket;
     }
 
+    [HttpPost]
+    [RequestSizeLimit(1048576)]
+    [HttpPost("UploadPicture")]
+    public async Task<ActionResult<UploadImageDto>> UploadImage(IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+            return BadRequest("No file selected.");
+
+        if (file.Length > 1048576)
+            return BadRequest("File size exceeds 1 MB.");
+
+        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Pics", fileName);
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await file.CopyToAsync(stream);
+        }
+
+        var imageUrl = $"{Request.Scheme}://{Request.Host}/api/Pics/{fileName}";
+
+        var dto = new UploadImageDto
+        {
+            ImageUrl = imageUrl,
+            FileName = fileName
+        };
+
+        return Ok(dto);
+    }
+
+
     private readonly FilterDefinitionBuilder<GridFSFileInfo> gbf = Builders<GridFSFileInfo>.Filter;
 
     /// <summary>

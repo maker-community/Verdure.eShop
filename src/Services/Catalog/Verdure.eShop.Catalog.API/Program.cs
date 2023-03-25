@@ -48,7 +48,7 @@ if (!string.IsNullOrEmpty(pathBase))
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.ContentRootPath, "Pics")),
-    RequestPath = "/pics"
+    RequestPath = "/api/pics"
 });
 app.UseRouting();
 app.UseCloudEvents();
