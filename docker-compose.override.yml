@@ -31,14 +31,14 @@ services:
     ports:
       - "5340:80"
 
-  sqldata:
-    environment:
-      - SA_PASSWORD=Pass@word
-      - ACCEPT_EULA=Y
-    ports:
-      - "5433:1433"
-    volumes:
-      - eshop-sqldata:/var/opt/mssql
+  #sqldata:
+  #  environment:
+  #    - SA_PASSWORD=Pass@word
+  #    - ACCEPT_EULA=Y
+  #  ports:
+  #    - "5433:1433"
+  #  volumes:
+  #    - eshop-sqldata:/var/opt/mssql
 
   zipkin:
     ports:
@@ -247,8 +247,8 @@ services:
       - "50000:50000"
 
 volumes:
-  eshop-sqldata:
-    external: false
+  #eshop-sqldata:
+  #  external: false
   eshop-nosqldata:
     external: false
   eshop-basketdata:
