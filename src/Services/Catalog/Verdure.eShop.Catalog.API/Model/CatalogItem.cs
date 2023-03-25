@@ -6,6 +6,8 @@ public class CatalogItem
 
     public string Name { get; private set; }
 
+    public string Desc { get; private set; }
+
     public decimal Price { get; private set; }
 
     public string PictureFileName { get; private set; }
@@ -24,6 +26,7 @@ public class CatalogItem
 
     public CatalogItem(
         string name,
+        string desc,
         decimal price,
         string pictureFileName,
         string pictureFileId,
@@ -33,6 +36,7 @@ public class CatalogItem
         int availableStock)
     {
         Name = name;
+        Desc = desc;
         Price = price;
         PictureFileName = pictureFileName;
         PictureFileId = pictureFileId;
