@@ -59,6 +59,7 @@ public static class ProgramExtensions
         builder.Services.AddScoped<IEventBus, DaprEventBus>();
         builder.Services.AddScoped<OrderStatusChangedToAwaitingStockValidationIntegrationEventHandler>();
         builder.Services.AddScoped<OrderStatusChangedToPaidIntegrationEventHandler>();
+        builder.Services.AddScoped<SendEmailToManagerIntegrationEventHandler>();
     }
 
     public static void AddCustomDatabase(this WebApplicationBuilder builder)

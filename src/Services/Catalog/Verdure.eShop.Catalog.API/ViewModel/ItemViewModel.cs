@@ -7,4 +7,6 @@ public record ItemViewModel(
     decimal Price,
     string PictureFileName,
     string PictureFileId,
-    string VideoFileId);
+    string VideoFileId,
+    string Author,
+    DateTime CreateTime);

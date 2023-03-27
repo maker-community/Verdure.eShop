@@ -18,8 +18,8 @@ services:
     image: datalust/seq:latest
 
   # Use the Azure SQL Edge version so we can also run on Apple Sillicon (thanks @ChristianWeyer)
-  sqldata:
-    image: mcr.microsoft.com/azure-sql-edge
+  #sqldata:
+  #  image: mcr.microsoft.com/azure-sql-edge
 
   zipkin:
     image: openzipkin/zipkin-slim:latest
@@ -51,7 +51,7 @@ services:
       context: .
       dockerfile: src/Services/Catalog/Verdure.eShop.Catalog.API/Dockerfile
     depends_on:
-      - sqldata
+      - mongodb
 
   verdure-eshop-catalog-api-dapr:
     image: "daprio/daprd:1.9.4"

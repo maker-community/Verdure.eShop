@@ -2,7 +2,7 @@ namespace Verdure.eShop.BuildingBlocks.EventBus;
 
 public class DaprEventBus : IEventBus
 {
-    private const string PubSubName = "Verdure.eShop-pubsub";
+    private const string PubSubName = "verdure-eshop-pubsub";
 
     private readonly DaprClient _dapr;
     private readonly ILogger _logger;

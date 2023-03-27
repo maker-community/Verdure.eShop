@@ -24,6 +24,21 @@ public class CatalogItem
 
     public int AvailableStock { get; private set; }
 
+    public string Author
+    {
+        get; set;
+    } = string.Empty;
+
+
+    public DateTime CreateTime
+    {
+        get;
+        set;
+    }
+
+    public StatusType Status { get; private set; }
+
+
     public CatalogItem(
         string name,
         string desc,
@@ -33,7 +48,9 @@ public class CatalogItem
         string videoFileId,
         int catalogTypeId,
         int catalogBrandId,
-        int availableStock)
+        int availableStock,
+        string author,
+        DateTime createTime)
     {
         Name = name;
         Desc = desc;
@@ -44,6 +61,13 @@ public class CatalogItem
         CatalogTypeId = catalogTypeId;
         CatalogBrandId = catalogBrandId;
         AvailableStock = availableStock;
+        Author = author;
+        CreateTime = createTime;
+    }
+
+    public void SetStatus(StatusType statusType)
+    {
+        Status = statusType;
     }
 
     /// <summary>
