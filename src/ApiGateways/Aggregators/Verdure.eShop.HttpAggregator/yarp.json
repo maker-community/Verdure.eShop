@@ -13,6 +13,9 @@
         "Destinations": {
           "destination1": {
             "Address": "http://localhost:5101"
+          },
+          "destination2": {
+            "Address": "http://api.douwp.club:5101"
           }
         }
       }
