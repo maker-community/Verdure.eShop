@@ -2,6 +2,7 @@
 using Serilog;
 using Verdure.eShop.Catalog.API;
 using Verdure.eShop.Mongo.Extensions;
+using Verdure.eShop.Services.Catalog.API.Services;
 
 namespace Verdure.eShop.Services.Catalog.API;
 
@@ -57,6 +58,7 @@ public static class ProgramExtensions
     public static void AddCustomApplicationServices(this WebApplicationBuilder builder)
     {
         builder.Services.AddScoped<IEventBus, DaprEventBus>();
+        builder.Services.AddScoped<IEmailService, EmailService>();
         builder.Services.AddScoped<OrderStatusChangedToAwaitingStockValidationIntegrationEventHandler>();
         builder.Services.AddScoped<OrderStatusChangedToPaidIntegrationEventHandler>();
         builder.Services.AddScoped<SendEmailToManagerIntegrationEventHandler>();

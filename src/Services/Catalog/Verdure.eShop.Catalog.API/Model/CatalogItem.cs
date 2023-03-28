@@ -38,7 +38,10 @@ public class CatalogItem
 
     public StatusType Status { get; private set; }
 
-
+    public CatalogItem()
+    {
+        
+    }
     public CatalogItem(
         string name,
         string desc,
