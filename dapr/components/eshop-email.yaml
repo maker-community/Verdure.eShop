@@ -8,20 +8,19 @@ spec:
   version: v1
   metadata:
   - name: host
-    value: maildev
+    value: "smtp.qq.com"
   - name: port
-    value: 1025
+    value: "465"
   - name: user
     secretKeyRef:
       name: Smtp.User
       key: Smtp.User
-  #- name: password
-  #  secretKeyRef:
-  #    name: Smtp.Password
-  #    key: Smtp.Password
+  - name: password
+    secretKeyRef:
+      name: Smtp.Password
+      key: Smtp.Password
   - name: skipTLSVerify
-    value: true
+    value: "true"
 auth:
   secretStore: verdure-eshop-secretstore
-scopes:
-- ordering-api
+
