@@ -2,6 +2,6 @@
 {
     public interface IEmailService
     {
-        Task SendCatalogItemToAuditAsync(CatalogItem catalog);
+        Task SendCatalogItemToAuditAsync(SendEmailToManagerIntegrationEvent eventData);
     }
 }

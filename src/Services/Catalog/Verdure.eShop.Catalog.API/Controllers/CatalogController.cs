@@ -10,6 +10,9 @@ public class CatalogController : ControllerBase
 {
     private readonly EmojisDbContext _context;
     private readonly IEventBus _eventBus;
+
+    private readonly FilterDefinitionBuilder<AuditToken> _bf = Builders<AuditToken>.Filter;
+    private readonly UpdateDefinitionBuilder<CatalogItem> _bu = Builders<CatalogItem>.Update;
     public CatalogController(EmojisDbContext context, IEventBus eventBus)
     {
         _context = context;
@@ -70,6 +73,16 @@ public class CatalogController : ControllerBase
         var catalog = new CatalogItem(request.Name, request.Desc, 0.0M, request.PictureFileName, request.PictureFileId,
             request.VideoFileId, request.CatalogTypeId, request.CatalogBrandId, 100, request.Author, DateTime.Now);
         await _context.CatalogItems.InsertOneAsync(catalog);
+
+        if (!string.IsNullOrEmpty(catalog.Id))
+        {
+            var auditToken = new AuditToken(catalog.Id, Guid.NewGuid().ToString(), DateTime.Now);
+            await _context.AuditTokens.InsertOneAsync(auditToken);
+
+            await _eventBus.PublishAsync(
+                new SendEmailToManagerIntegrationEvent(catalog.Id, catalog.Name, catalog.PictureFileName, catalog.Author, auditToken.Token));
+        }
+
         return Ok(catalog);
     }
 
@@ -101,7 +114,7 @@ public class CatalogController : ControllerBase
                 var idsToSelect = numIds.Select(id => id.Value);
 
                 var items = (await _context.CatalogItems
-                    .Find(Builders<CatalogItem>.Filter.Empty).ToListAsync()).Where(ci => idsToSelect.Contains(ci.Id)&&ci.Status == StatusType.Opened)
+                    .Find(Builders<CatalogItem>.Filter.Empty).ToListAsync()).Where(ci => idsToSelect.Contains(ci.Id) && ci.Status == StatusType.Opened)
                     .Select(item => new ItemViewModel(
                         item.Id,
                         item.Name,
@@ -144,7 +157,7 @@ public class CatalogController : ControllerBase
             .CountAsync();
 
         var itemsOnPage = query
-            .Where(i=>i.Status == StatusType.Opened)
+            .Where(i => i.Status == StatusType.Opened)
             .OrderBy(item => item.Name)
             .Skip(pageSize * pageIndex)
             .Take(pageSize)
@@ -158,9 +171,22 @@ public class CatalogController : ControllerBase
                 item.VideoFileId,
                 item.Author,
                 item.CreateTime)).AsEnumerable();
-
-        await _eventBus.PublishAsync(new SendEmailToManagerIntegrationEvent("323", "323", "3232"));
-
         return new PaginatedItemsViewModel(pageIndex, pageSize, totalItems, itemsOnPage);
+    }
+
+    [HttpPost("AuditCatalogItem")]
+    public async Task<IActionResult> AuditCatalogItem(AuditCatalogItemRequest request)
+    {
+        var auditToken = await _context.AuditTokens.Find(_bf.Eq(c => c.Token, request.AuditToken)).FirstOrDefaultAsync();
+
+        if (auditToken == null)
+        {
+            return NotFound();
+        }
+
+        // 展示拉姆达表达式的条件方式,以及第三个可选参数的配置.
+        _ = await _context.CatalogItems.UpdateOneAsync(c => c.Id == auditToken.CatalogId, _bu.Set(c => c.Status, StatusType.Opened), new() { IsUpsert = true });
+
+        return Ok();
     }
 }

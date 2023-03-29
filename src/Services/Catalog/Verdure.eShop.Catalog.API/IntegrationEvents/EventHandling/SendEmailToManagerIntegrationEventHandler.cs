@@ -22,7 +22,7 @@ public class SendEmailToManagerIntegrationEventHandler :
     {
         try
         {
-            await _emailService.SendCatalogItemToAuditAsync(new CatalogItem());
+            await _emailService.SendCatalogItemToAuditAsync(@event);
             // todo: 发送审核邮件
         }
         catch (Exception ex)

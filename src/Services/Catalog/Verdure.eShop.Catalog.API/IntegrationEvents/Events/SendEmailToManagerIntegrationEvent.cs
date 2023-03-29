@@ -3,5 +3,7 @@
 public record SendEmailToManagerIntegrationEvent(
     string CatalogItemId,
     string CatalogItemName,
-    string CatalogItemAuthor)
+    string PictureFileName,
+    string CatalogItemAuthor,
+    string AuditToken)
     : IntegrationEvent;

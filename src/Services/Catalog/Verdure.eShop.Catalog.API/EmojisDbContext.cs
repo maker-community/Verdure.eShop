@@ -16,4 +16,9 @@ public sealed class EmojisDbContext : BaseDbContext
     /// 类型
     /// </summary>
     public IMongoCollection<CatalogType> CatalogTypes => Database.GetCollection<CatalogType>("CatalogType");
+
+    /// <summary>
+    /// 审核token
+    /// </summary>
+    public IMongoCollection<AuditToken> AuditTokens => Database.GetCollection<AuditToken>("AuditToken");
 }
