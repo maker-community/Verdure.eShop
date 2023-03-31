@@ -19,6 +19,11 @@ services:
   mongodb:
     ports:
       - "27018:27017"
+    volumes:
+      - /database:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
 
   redis:
     image: redis:alpine
