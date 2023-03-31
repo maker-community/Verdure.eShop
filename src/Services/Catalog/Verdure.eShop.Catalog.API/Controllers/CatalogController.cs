@@ -175,7 +175,7 @@ public class CatalogController : ControllerBase
     }
 
     [HttpPost("AuditCatalogItem")]
-    public async Task<IActionResult> AuditCatalogItem(AuditCatalogItemRequest request)
+    public async Task<IActionResult> AuditCatalogItemAsync(AuditCatalogItemRequest request)
     {
         var auditToken = await _context.AuditTokens.Find(_bf.Eq(c => c.Token, request.AuditToken)).FirstOrDefaultAsync();
 
@@ -186,6 +186,22 @@ public class CatalogController : ControllerBase
 
         // 展示拉姆达表达式的条件方式,以及第三个可选参数的配置.
         _ = await _context.CatalogItems.UpdateOneAsync(c => c.Id == auditToken.CatalogId, _bu.Set(c => c.Status, StatusType.Opened), new() { IsUpsert = true });
+
+        return Ok();
+    }
+
+    [HttpPost("HideCatalogItem")]
+    public async Task<IActionResult> HideCatalogItemAsync(AuditCatalogItemRequest request)
+    {
+        var auditToken = await _context.AuditTokens.Find(_bf.Eq(c => c.Token, request.AuditToken)).FirstOrDefaultAsync();
+
+        if (auditToken == null)
+        {
+            return NotFound();
+        }
+
+        // 展示拉姆达表达式的条件方式,以及第三个可选参数的配置.
+        _ = await _context.CatalogItems.UpdateOneAsync(c => c.Id == auditToken.CatalogId, _bu.Set(c => c.Status, StatusType.Default), new() { IsUpsert = true });
 
         return Ok();
     }
