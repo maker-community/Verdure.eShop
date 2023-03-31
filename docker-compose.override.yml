@@ -89,6 +89,8 @@ services:
       - SeqServerUrl=http://seq
     ports:
       - "80:80"
+    volumes:
+      - /pics:/app/Pics
 
   verdure-eShop-httpAggregator:
     environment:
