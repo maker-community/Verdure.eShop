@@ -28,7 +28,7 @@
                 message,
                 new Dictionary<string, string>
                 {
-                    ["emailFrom"] = "gil.zhang.dev@foxmail.com",
+                    ["emailFrom"] = "maker-community@foxmail.com",
                     ["emailTo"] = Email,
                     ["subject"] = $"表情【{eventData.CatalogItemName}】的审核邮件"
                 });
