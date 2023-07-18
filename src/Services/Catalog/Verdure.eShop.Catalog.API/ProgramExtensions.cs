@@ -39,21 +39,22 @@ public static class ProgramExtensions
 
     public static void UseCustomSwagger(this WebApplication app)
     {
-        app.UseSwagger();
+        app.UseSwagger(c =>
+        {
+            c.RouteTemplate = "api/swagger/{documentName}/swagger.json";
+        });
         app.UseSwaggerUI(c =>
         {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", $"{AppName} V1");
+
+            c.RoutePrefix = "api/swagger";
+            c.SwaggerEndpoint("/api/swagger/v1/swagger.json", $"{AppName} V1");
         });
     }
 
     public static void AddCustomHealthChecks(this WebApplicationBuilder builder) =>
         builder.Services.AddHealthChecks()
             .AddCheck("self", () => HealthCheckResult.Healthy())
-            .AddDapr()
-            .AddSqlServer(
-                builder.Configuration["ConnectionStrings:CatalogDB"]!,
-                name: "CatalogDB-check",
-                tags: new [] { "catalogdb" });
+            .AddDapr();
 
     public static void AddCustomApplicationServices(this WebApplicationBuilder builder)
     {

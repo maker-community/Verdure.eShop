@@ -3,12 +3,12 @@
     "Verdure.eShop.HttpAggregator": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "Ping",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5091"
+      "applicationUrl": "http://localhost:8082"
     },
     "IIS Express": {
       "commandName": "IISExpress",

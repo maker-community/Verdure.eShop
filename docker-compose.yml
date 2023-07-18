@@ -5,6 +5,9 @@ services:
   maildev:
     image: maildev/maildev:latest
 
+  hackers-web:
+    image: gilzhang/hackers:latest
+
   rabbitmq:
     image: rabbitmq:3-management-alpine
 

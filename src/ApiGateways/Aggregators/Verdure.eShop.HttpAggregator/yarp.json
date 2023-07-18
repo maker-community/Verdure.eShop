@@ -1,21 +1,39 @@
 {
   "ReverseProxy": {
     "Routes": {
-      "Identity Service": {
-        "ClusterId": "CatalogAPI",
+      "hackers-web": {
+        "ClusterId": "hackers-web",
         "Match": {
-          "Path": "/api/{**everything}"
+          "Hosts": [
+            "www.douwp.club"
+          ],
+          "Path": "{**catch-all}"
+        }
+      },
+      "eshop-api": {
+        "ClusterId": "eshop-api",
+        "Match": {
+          "Hosts": [
+            "api.douwp.club"
+          ],
+          "Path": "/api/{**catch-all}"
         }
       }
     },
     "Clusters": {
-      "CatalogAPI": {
+      "hackers-web": {
+        "LoadBalancingPolicy": "RoundRobin",
         "Destinations": {
-          "destination1": {
-            "Address": "http://localhost:5101"
-          },
-          "destination2": {
-            "Address": "http://api.douwp.club:5101"
+          "hackers-web": {
+            "Address": "http://www.douwp.club:5241/"
+          }
+        }
+      },
+      "eshop-api": {
+        "LoadBalancingPolicy": "RoundRobin",
+        "Destinations": {
+          "eshop-api": {
+            "Address": "http://api.douwp.club:5101/"
           }
         }
       }

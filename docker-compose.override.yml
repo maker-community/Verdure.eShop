@@ -7,6 +7,10 @@ version: '3.4'
 
 services:
 
+  hackers-web:
+    ports:
+      - "5241:80"
+
   maildev:
     ports:
       - "5500:1080"
@@ -88,7 +92,7 @@ services:
       - RetryMigrations=true
       - SeqServerUrl=http://seq
     ports:
-      - "80:80"
+      - "5101:80"
     volumes:
       - /pics:/app/Pics
 
@@ -97,7 +101,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
     ports:
-      - "5101:80"
+      - "80:80"
 
   verdure-eshop-catalog-api-dapr:
     command: ["./daprd",
