@@ -5,8 +5,8 @@ services:
   maildev:
     image: maildev/maildev:latest
 
-  hackers-web:
-    image: gilzhang/hackers:latest
+  maker-web:
+    image: gilzhang/maker-web:latest
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
