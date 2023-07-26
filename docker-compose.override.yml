@@ -7,7 +7,7 @@ version: '3.4'
 
 services:
 
-  hackers-web:
+  maker-web:
     ports:
       - "5241:80"
 
