@@ -11,23 +11,23 @@ services:
     ports:
       - "5241:80"
 
-  maildev:
-    ports:
-      - "5500:1080"
-      - "1025:1025"
+  # maildev:
+  #   ports:
+  #     - "5500:1080"
+  #     - "1025:1025"
 
-  rabbitmq:
-    ports:
-      - "5672:5672"
+  # rabbitmq:
+  #   ports:
+  #     - "5672:5672"
 
-  mongodb:
-    ports:
-      - "27018:27017"
-    volumes:
-      - /database:/data/db
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin
+  # mongodb:
+  #   ports:
+  #     - "27018:27017"
+  #   volumes:
+  #     - /database:/data/db
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=admin
+  #     - MONGO_INITDB_ROOT_PASSWORD=admin
 
   redis:
     image: redis:alpine
