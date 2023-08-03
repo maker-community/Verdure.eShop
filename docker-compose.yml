@@ -8,11 +8,11 @@ services:
   maker-web:
     image: gilzhang/maker-web:latest
 
-  rabbitmq:
-    image: rabbitmq:3-management-alpine
+  # rabbitmq:
+  #   image: rabbitmq:3-management-alpine
 
-  mongodb:
-    image: mongo
+  # mongodb:
+  #   image: mongo
 
   redis:
     image: redis:alpine
