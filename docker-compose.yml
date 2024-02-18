@@ -138,7 +138,7 @@ services:
   #  depends_on:
   #    - webshoppingapigw
 
-  webstatus:
+  verdure-eshop-webstatus:
     image: ${REGISTRY:-gilzhang}/webstatus:${TAG:-latest}
     build:
       context: .
