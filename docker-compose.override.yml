@@ -232,7 +232,7 @@ services:
   #    - "./dapr/components/:/components"
   #    - "./dapr/configuration/:/configuration"
 
-  webstatus:
+  verdure-eshop-webstatus:
     environment:
       - ASPNETCORE_URLS=http://0.0.0.0:80
       #- HealthChecksUI__HealthChecks__0__Name=Basket API
