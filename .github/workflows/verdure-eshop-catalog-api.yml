@@ -1,9 +1,9 @@
-name: Build verdure-admin-api:latest
+name: Build verdure-eshop-catalog-api:latest
 on:
   workflow_dispatch:
   push:
     branches:
-      - dev
+      - main
   #release:
   #  types: [published]
 
@@ -31,7 +31,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            gilzhang/verdure-admin-api
+            gilzhang/verdure-eshop-catalog-api
           flavor: |
             latest=true
           # generate Docker tags based on the following events/attributes
